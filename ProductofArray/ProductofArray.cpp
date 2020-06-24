@@ -2,10 +2,34 @@
 //
 
 #include <iostream>
-
+#include <vector>
+using namespace std;
+class Solution {
+public:
+	vector<int> productExceptSelf(vector<int>& nums)
+	{
+		vector<int>resultVector(nums.size(), 1);
+		int nProd = 1;
+		for (int i = 0; i < nums.size(); i++)
+		{
+			resultVector[i] = nProd;
+			nProd *= nums[i];
+		}
+		nProd = 1;
+		for (int i = nums.size()-1; i >=0; i--)
+		{	
+			resultVector[i] *= nProd;
+			nProd *= nums[i];
+		}
+		return resultVector;
+	}
+};
 int main()
 {
-    std::cout << "Hello World!\n";
+	vector<int> nums = { 1,2,3,4 };
+	Solution solutionObj;
+	solutionObj.productExceptSelf(nums);
+	std::cout << "Hello World!\n";
 }
 
 // Run program: Ctrl + F5 or Debug > Start Without Debugging menu
